@@ -115,6 +115,8 @@ The Critic compares the Analyst’s claims against the raw context. If a claim i
 
 ## Observations & Results
 
+(Please find the sample input inside sample-input/ directory)
+
 **Live Diagnostic Demos**
 
 - **Document Analysis Flow:**  

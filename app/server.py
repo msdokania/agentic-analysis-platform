@@ -1,5 +1,6 @@
 from http.client import HTTPException
-from fastapi import FastAPI
+import json
+from fastapi import FastAPI, File, Form, UploadFile
 from rq.job import Job
 from app.schemas import JobSpec
 from app.queues.rqclient import queue, redis_conn
@@ -27,12 +28,44 @@ def submit_job(spec: JobSpec):
         "message": "Agent analysis started in the background."
     }
 
+
+@app.post("/jobs/raw-logs", status_code=201)
+async def submit_job_with_raw_logs(
+    job_spec: str = Form(...),
+    logs: UploadFile = File(...)
+):
+    try:
+        spec_dict = json.loads(job_spec)
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON in job_spec")
+
+    raw_logs = (await logs.read()).decode("utf-8", errors="replace")
+
+    # Inject logs in canonical format
+    spec_dict.setdefault("inputs", {})
+    spec_dict["inputs"]["logs"] = {
+        "format": "raw",
+        "content": raw_logs,
+        "filename": logs.filename
+    }
+
+    spec = JobSpec(**spec_dict)
+
+    job = queue.enqueue(run_agent_job, spec.dict(), job_timeout="10m")
+
+    return {
+        "job_id": job.get_id(),
+        "status": "queued",
+        "log_file": logs.filename,
+        "message": "Agent analysis started with raw logs."
+    }
+
 # @app.post("/jobs")
 # def submit_job(spec: JobSpec):
 #     """Run the job synchronously and print output to console."""
-#     print("🔥 Starting job synchronously...")
+#     print("Starting job synchronously...")
 #     result = run_agent_job(spec.dict())
-#     print("🔥 Job finished!")
+#     print("Job finished!")
 #     print("Result:", result)
 #     return {
 #         "message": "Job completed synchronously. Check console logs for details.",

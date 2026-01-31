@@ -1,0 +1,22 @@
+{
+  "job_type": "log_analysis",
+  "objective": "Analyze Karpenter scheduling failures and identify root cause.",
+  "inputs": {
+    "logs": {
+      "format": "raw",
+      "content": "????"
+    },
+    "environment": "production",
+    "time_window": "last 24h",
+    "related_services": ["karpenter", "kube-scheduler", "aws-ec2"]
+  },
+  "constraints": {
+    "focus_on": [
+      "scheduling failures",
+      "capacity limits",
+      "nodepool constraints"
+    ],
+    "output_depth": "detailed"
+  },
+  "output_format": "markdown"
+}

@@ -1,0 +1,51 @@
+{
+  "job_type": "log_analysis",
+  "objective": "Analyze application logs to identify the root cause of repeated request failures and suggest fixes.",
+  "inputs": {
+    "logs": [
+      {
+        "timestamp": "2026-01-29T10:15:21Z",
+        "level": "ERROR",
+        "service": "auth-service",
+        "message": "JWT token validation failed",
+        "request_id": "req-123",
+        "stacktrace": "TokenExpiredError: jwt expired at verifyToken (/app/auth/jwt.js:42)"
+      },
+      {
+        "timestamp": "2026-01-29T10:15:22Z",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "Upstream service auth-service returned 401",
+        "request_id": "req-123"
+      },
+      {
+        "timestamp": "2026-01-29T10:16:05Z",
+        "level": "WARN",
+        "service": "auth-service",
+        "message": "Token about to expire",
+        "request_id": "req-124"
+      },
+      {
+        "timestamp": "2026-01-29T10:17:11Z",
+        "level": "ERROR",
+        "service": "auth-service",
+        "message": "JWT token validation failed",
+        "request_id": "req-125",
+        "stacktrace": "TokenExpiredError: jwt expired at verifyToken (/app/auth/jwt.js:42)"
+      }
+    ],
+    "environment": "production",
+    "time_window": "2026-01-29T10:00:00Z to 2026-01-29T11:00:00Z",
+    "related_services": ["auth-service", "api-gateway"]
+  },
+  "constraints": {
+    "focus_on": [
+      "authentication failures",
+      "token expiry issues",
+      "inter-service communication"
+    ],
+    "output_depth": "detailed",
+    "exclude_sensitive_data": true
+  },
+  "output_format": "markdown"
+}

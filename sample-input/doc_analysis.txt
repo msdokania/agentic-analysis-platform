@@ -1,0 +1,18 @@
+{
+  "job_type": "document_analysis",
+  "objective": "Explain how to do better resource provisioning in EKS",
+  "inputs": {
+    "sources": ["agentic_analysis_docs"],
+    "focus_sections": [
+      "control plane",
+      "high availability",
+      "scaling",
+      "responsibility model"
+    ]
+  },
+  "constraints": {
+    "max_tokens": 600,
+    "strictly_use_retrieved_context": true
+  },
+  "output_format": "structured_summary"
+}

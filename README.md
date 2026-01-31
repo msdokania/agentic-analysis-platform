@@ -12,7 +12,7 @@ So instead of asking the LLM to “answer better”, this project asks the syste
 
 ⸻
 
-📌 Project Objective
+Project Objective
 
 This project replaces the "Linear Chat" with an "Agentic Workflow."
 
@@ -25,7 +25,7 @@ This approach directly addresses the twin problems of Information Overload and C
 
 ⸻
 
-✨ Key Capabilities
+Key Capabilities
 	•	📄 Document Analysis
 Semantic deep-dives into complex PDFs to answer user queries with evidence-backed reasoning.
 	•	🪵 Log Diagnostics
@@ -33,7 +33,7 @@ Root-cause analysis by filtering noise and identifying temporal failure patterns
 
 ⸻
 
-🛠️ Tech Stack & Framework
+Tech Stack & Framework
 
 This project uses a custom-built Multi-Agent System (MAS).
 
@@ -49,20 +49,20 @@ Core Stack
 
 ⸻
 
-🧠 Core Concepts: What Makes It “Agentic”?
+Core Concepts: What Makes It “Agentic”?
 
 Agentic AI refers to systems where the AI is given the agency to follow a process, rather than just completing a sentence.
 This project implements three foundational agentic concepts:
 
-1️⃣ Decomposition (The Planner): Instead of answering immediately, the system first asks: “What steps do I need to take to answer this accurately?”
+1. Decomposition (The Planner): Instead of answering immediately, the system first asks: “What steps do I need to take to answer this accurately?”
 
-2️⃣ Specialization: Different personas (Planner, Analyst, Critic) are used to create a checks-and-balances system, similar to a professional engineering team.
+2. Specialization: Different personas (Planner, Analyst, Critic) are used to create a checks-and-balances system, similar to a professional engineering team.
 
-3️⃣ State Accumulation: As the process moves from planning to reporting, a central State Object grows. Later agents can see the reasoning and decisions of earlier agents, enabling traceability and introspection.
+3. State Accumulation: As the process moves from planning to reporting, a central State Object grows. Later agents can see the reasoning and decisions of earlier agents, enabling traceability and introspection.
 
 ⸻
 
-🏗️ High-Level Logic & Architecture
+High-Level Logic & Architecture
 
 When a job is submitted, the system follows this execution flow:
 	1.	FastAPI accepts the job and immediately returns a job_id, pushing the task to Redis
@@ -75,9 +75,9 @@ When a job is submitted, the system follows this execution flow:
 
 ⸻
 
-🔍 Deep Dive: Component Implementation
+Deep Dive: Component Implementation
 
-1️⃣ The Planning Phase (planner.py)
+1. The Planning Phase (planner.py)
 
 The Planner acts as the Architect.
 It converts a high-level objective into a numbered list of execution steps.
@@ -85,7 +85,7 @@ It converts a high-level objective into a numbered list of execution steps.
 
 ⸻
 
-2️⃣ Multi-Query Retrieval (retrieval.py)
+2. Multi-Query Retrieval (retrieval.py)
 
 To prevent information gaps, the retriever uses the Planner’s steps to perform multiple targeted searches.
 	•	Document Analysis: Uses Qdrant to retrieve semantic matches for each plan step.
@@ -93,28 +93,28 @@ To prevent information gaps, the retriever uses the Planner’s steps to perform
 
 ⸻
 
-3️⃣ The Analyst (analysis.py)
+3. The Analyst (analysis.py)
 
 The Analyst is the Subject Matter Expert.
 It synthesizes the filtered context into a technical breakdown while strictly adhering to user constraints (e.g., “Max 500 words”).
 
 ⸻
 
-4️⃣ The Critic (critic.py)
+4. The Critic (critic.py)
 
 The Gatekeeper of Truth.
 The Critic compares the Analyst’s claims against the raw context. If a claim is not explicitly supported by the data, it is flagged — preventing hallucinations from reaching the final report.
 
 ⸻
 
-📊 Observations & Results
+Observations & Results
 
 Live Diagnostic Demos
 
-📄 Document Analysis Flow: Step by result of agents parsing the EKS PDF and planning retrieval
+Document Analysis Flow: Step by result of agents parsing the EKS PDF and planning retrieval
 ![Analyze Video 1 at assets/doc-analysis.mov](assets/doc-analysis.mov)
 
-🪵 Log Diagnostic Flow: Step by result of agents filtering log noise and identifying root cause
+Log Diagnostic Flow: Step by result of agents filtering log noise and identifying root cause
 ![Analyze Video 1 at assets/log-analysis.mov](assets/log-analysis.mov)
 
 Final Report Sample:
@@ -125,16 +125,16 @@ If you run these locally, you’ll see each agent’s execution printed step-by-
 
 ⸻
 
-🚀 Getting Started
+Getting Started
 
-1️⃣ Prerequisites
+1. Prerequisites
 	•	Python 3.10+
 	•	Docker & Docker Compose
 	•	OpenAI API Key
 
 ⸻
 
-2️⃣ Infrastructure Setup (Redis & Qdrant)
+2. Infrastructure Setup (Redis & Qdrant)
 
 Docker is used to spin up all required infrastructure.
 ```bash
@@ -147,7 +147,7 @@ docker-compose up -d
 
 ⸻
 
-3️⃣ Application Setup
+3. Application Setup
 
 ```bash
 git clone https://github.com/msdokania/agentic-analysis-platform.git
@@ -160,7 +160,7 @@ pip install -r requirements.txt
 
 ⸻
 
-4️⃣ Configuration
+4. Configuration
 
 Create a .env file in the project root:
 ```text
@@ -173,7 +173,7 @@ QDRANT_COLLECTION_NAME=your-collection-name
 
 ⸻
 
-5️⃣ Execution
+5. Execution
 
 Run two separate terminals:
 
@@ -194,7 +194,7 @@ OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES rq worker agent-jobs
 
 ⸻
 
-⚠️ First-Time Setup Note
+First-Time Setup Note
 
 On first run:
 	1.	Place your PDF document in the data/ directory
@@ -205,7 +205,7 @@ This will ingest the document as vector embeddings into Qdrant for future retrie
 
 ⸻
 
-🛤️ Future Roadmap
+Future Roadmap
 	•	Self-Correction Loop — Critic can reject low-confidence analysis and trigger a re-run
 	•	Human-in-the-Loop — Allow users to edit the plan before execution
 	•	Hybrid Model Routing — GPT-4o for planning, Claude 3.5 Sonnet for analysis

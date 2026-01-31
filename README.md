@@ -119,11 +119,11 @@ The Critic compares the Analyst’s claims against the raw context. If a claim i
 
 - **Document Analysis Flow:**  
   Step-by-step results of agents parsing the EKS PDF and planning retrieval.  
-  ![Document Analysis Video](assets/doc-analysis.mov)
+  ![Document Analysis Video](assets/doc-analysis.gif)
 
 - **Log Diagnostic Flow:**  
   Step-by-step results of agents filtering log noise and identifying root cause.  
-  ![Log Analysis Video](assets/log-analysis.mov)
+  ![Log Analysis Video](assets/log-analysis.gif)
 
 **Final Report Sample:**  
 A sample final report generated after a complex log analysis, showcasing structured findings and confidence scoring.  

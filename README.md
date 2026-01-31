@@ -4,7 +4,7 @@
 
 ## Why This Project Exists (The Problem Statement)
 
-In typical LLM use-cases, users often find themselves in a “prompting loop” — tweaking a question repeatedly to get a useful answer. As the conversation grows, the LLM begins to lose the thread, forgetting initial constraints or, worse, hallucinating technical details to fill the gaps in its memory.
+In typical LLM use-cases, users often find themselves in a “prompting loop” - tweaking a question repeatedly to get a useful answer. As the conversation grows, the LLM begins to lose the thread, forgetting initial constraints or, worse, hallucinating technical details to fill the gaps in its memory.
 
 So instead of asking the LLM to “answer better”, this project asks the system to think better.
 

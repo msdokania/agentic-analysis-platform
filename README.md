@@ -129,9 +129,19 @@ The Critic compares the Analyst’s claims against the raw context. If a claim i
 
 **Final Report Sample:**  
 A sample final report generated after a complex log analysis, showcasing structured findings and confidence scoring.  
-![Sample Output GIF](assets/sample_output_log_analysis.gif)
+![assets/sample_output_log_analysis.gif](assets/sample_output_log_analysis.gif)
 
 > If you run these locally, each agent’s execution will print step-by-step in the worker console.
+
+**Using raw logs:**
+
+In real-world scenarios, most application and infrastructure logs are generated in raw text format. You can upload raw log files directly to the /jobs/raw-logs endpoint for analysis.
+Once uploaded, the system automatically reads the log contents, injects them into the job specification, and executes the analysis workflow as usual - no need to pre-format or escape the logs.
+(A sample input Job Spec for raw logs endpoint is provided inside sample-input/ directory)
+
+Below is a sample analysis report for a Karpenter scheduling failure on AWS using a raw log file:
+
+![assets/aws_log_scheduling_error_report.png](assets/aws_log_scheduling_error_report.png)
 
 ---
 

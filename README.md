@@ -47,6 +47,9 @@ This design makes the system easier to understand, modify, and extend for anyone
 - Task Queue: Redis + RQ (background task processing)  
 - Vector Store: Qdrant (high-performance semantic retrieval)  
 - LLM: OpenAI (GPT-4o-mini)
+- Libraries / Helpers:
+  - Pydantic — for structured data validation and type-safe job specifications
+  - LangChain — selectively for document ingestion and vector retrieval
 
 
 ## Core Concepts: What Makes It “Agentic”?

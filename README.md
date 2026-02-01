@@ -239,9 +239,9 @@ This will ingest the document as vector embeddings into Qdrant for future retrie
 ---
 
 ## Future Roadmap
-- Self-Correction Loop — Critic can reject low-confidence analysis and trigger a re-run
-- Human-in-the-Loop — Allow users to edit the plan before execution
-- Hybrid Model Routing — GPT-4o for planning, Claude 3.5 Sonnet for analysis
+- Self-Correction Loop - Critic can reject low-confidence analysis and trigger a re-run
+- Human-in-the-Loop - Allow users to edit the plan before execution
+- Hybrid Model Routing - GPT-4o for planning, Claude 3.5 Sonnet for analysis
 
 ---
 

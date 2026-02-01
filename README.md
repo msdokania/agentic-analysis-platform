@@ -169,8 +169,18 @@ docker-compose up -d
 
 ### 3. Application Setup
 
+Fork the repository to your GitHub account by clicking the Fork button on the top-right of the repo page.
+Then Clone your fork locally:
+```bash
+git clone https://github.com/<your-username>/agentic-analysis-platform.git
+```
+
+Or Clone directly:
 ```bash
 git clone https://github.com/msdokania/agentic-analysis-platform.git
+```
+
+```bash
 cd agentic-analysis-platform
 
 python -m venv venv

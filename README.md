@@ -239,9 +239,23 @@ This will ingest the document as vector embeddings into Qdrant for future retrie
 ---
 
 ## Future Roadmap
-- Self-Correction Loop - Critic can reject low-confidence analysis and trigger a re-run
-- Human-in-the-Loop - Allow users to edit the plan before execution
-- Hybrid Model Routing - GPT-4o for planning, Claude 3.5 Sonnet for analysis
+
+### Smart Self-Correction
+- Analyst to retry if the Critic’s confidence < X
+
+### Human-in-the-Loop
+- Allow users to edit the plan before execution
+
+### Reliability Guardrails
+- Structured Output: Forcing the AI to follow strict templates so it never forgets to include a specific section.
+- Evidence Checking: Making the Critic highlight the exact line in the logs that proves the Analyst is right.
+
+### Template Library (Deterministic Planning)
+- For planning use Common Blueprints for standard tasks (like "AWS Connection Issues") to make the results more consistent and faster.
+
+### Optimization
+- Hybrid model routing (e.g., GPT-4o for planning, Claude 3.5 Sonnet for synthesis)
+
 
 ---
 

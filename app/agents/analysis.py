@@ -6,13 +6,13 @@ client = OpenAI()
 
 def analyze(state: dict):
     spec = state["job_spec"]
-    constraints = spec.get("constraints") or "No specific constraints."
     
     user_content = f"""
     OBJECTIVE: {spec['objective']}
     JOB TYPE: {spec['job_type']}
-    CONSTRAINTS: {constraints}
+    EXECUTION PLAN: {state['plan_steps']}
     CONTEXT: {state['context']}
+    CONSTRAINTS: {spec.get('constraints', 'None')}
     """
     
     response = client.chat.completions.create(

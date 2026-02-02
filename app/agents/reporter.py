@@ -8,10 +8,17 @@ def build_report(state: dict):
     spec = state["job_spec"]
     
     user_content = f"""
-    OBJECTIVE: {spec['objective']}
-    JOB TYPE: {spec['job_type']}
-    ANALYSIS: {state['analysis']}
-    CRITIQUE: {state['critique']}
+    ### PRIMARY OBJECTIVE
+    {spec['objective']}
+
+    ### JOB TYPE
+    {spec['job_type']}
+
+    ### DRAFT ANALYSIS (TO BE FILTERED)
+    {state['analysis']}
+
+    ### QUALITY AUDIT / CRITIQUE (TRUTH SOURCE)
+    {state['critique']}
     """
 
     response = client.chat.completions.create(
